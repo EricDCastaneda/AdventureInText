@@ -128,8 +128,13 @@ namespace adventureInText
             Console.WriteLine("Right on queue, a blinding light materializes before you with a near-deafening bang and your brother appears!");
             Console.WriteLine("He says, 'I lost you last night! That New Year's Eve party got crazy and ended with a trip to an alternate universe.'");
             Console.WriteLine("You thank him for finding you and then he casually says, 'Remind me which year you're from again, I've been hopping around a lot.'");
-            Console.WriteLine("Enter the year you came from: ");
-            tempYear = Console.ReadLine();
+            Console.WriteLine("Enter the year you came from: ");            
+            int yearNum;
+            while (!int.TryParse(Console.ReadLine(), out yearNum))
+            {
+                Console.WriteLine("That was invalid. Enter a valid four digit year.");
+            }
+            tempYear = yearNum.ToString();
             tempYear = $"{tempYear},12,31";
             userYear = DateTime.Parse(tempYear);
             userYear = userYear.Add(new TimeSpan(23, 59, 59));
@@ -139,9 +144,15 @@ namespace adventureInText
             {
                 Console.WriteLine("Your brother says, 'I could've swore it was later than that. Pick a year after that.'");
                 Console.WriteLine("Enter the year you came from: ");
-                tempYear = Console.ReadLine();
+                int yearNumCheck;
+                while (!int.TryParse(Console.ReadLine(), out yearNumCheck))
+                {
+                    Console.WriteLine("That was an invalid year. Enter a valid four digit year.");
+                }
+                tempYear = yearNumCheck.ToString();
                 tempYear = $"{tempYear},12,31";
                 userYear = DateTime.Parse(tempYear);
+                userYear = userYear.Add(new TimeSpan(23, 59, 59));
                 int nextResult = DateTime.Compare(userYear, thisYear);
                 result = nextResult;
             }
