@@ -119,20 +119,31 @@ namespace adventureInText
 
         public static void act3()
         {
-            int year;
-            int currentYear = DateTime.Now.Year;
+            
+            string tempYear;
+            DateTime userYear = new DateTime();            
+            var currentYear = DateTime.Now;
+            var thisYear = new DateTime(currentYear.Year, currentYear.Month, currentYear.Day, 0, 0, 0);
             Console.WriteLine("You decide to walk past the entrance with a swiftness and are firmly in the territory of wanting this nightmare to end now.");
             Console.WriteLine("Right on queue, a blinding light materializes before you with a near-deafening bang and your brother appears!");
             Console.WriteLine("He says, 'I lost you last night! That New Year's Eve party got crazy and ended with a trip to an alternate universe.'");
             Console.WriteLine("You thank him for finding you and then he casually says, 'Remind me which year you're from again, I've been hopping around a lot.'");
             Console.WriteLine("Enter the year you came from: ");
-            int.TryParse(Console.ReadLine(), out year);
+            tempYear = Console.ReadLine();
+            tempYear = $"{tempYear},12,31";
+            userYear = DateTime.Parse(tempYear);
+            userYear = userYear.Add(new TimeSpan(23, 59, 59));
+            int result = DateTime.Compare(userYear, thisYear);
 
-            while (year > currentYear)
+            while (result < 0)
             {
                 Console.WriteLine("Your brother says, 'I could've swore it was later than that. Pick a year after that.'");
                 Console.WriteLine("Enter the year you came from: ");
-                int.TryParse(Console.ReadLine(), out year);
+                tempYear = Console.ReadLine();
+                tempYear = $"{tempYear},12,31";
+                userYear = DateTime.Parse(tempYear);
+                int nextResult = DateTime.Compare(userYear, thisYear);
+                result = nextResult;
             }
             Console.WriteLine("Oh that's right! Your brother puts his arm around you and tells you to close your eyes so you do it.");
             Console.WriteLine("Press 'Enter' to continue.");
