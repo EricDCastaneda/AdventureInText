@@ -156,7 +156,7 @@ namespace adventureInText
                 int nextResult = DateTime.Compare(userYear, thisYear);
                 result = nextResult;
             }
-            Console.WriteLine("Oh that's right! Your brother puts his arm around you and tells you to close your eyes so you do it.");
+            Console.WriteLine("'Oh that's right!' Your brother puts his arm around you and tells you to close your eyes so you do it.");
             Console.WriteLine("Press 'Enter' to continue.");
             Console.ReadLine();
             Console.Clear();
